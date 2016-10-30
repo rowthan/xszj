@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<title>学生之家应聘报名</title>
+
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/demo.css" />
+
+<!--必要样式-->
+<link rel="stylesheet" type="text/css" href="css/component.css" />
+
+<script src="js/modernizr.custom.js"></script>
+
+</head>
+<body>
+<section>
+	<form id="theForm" class="simform" autocomplete="off" method="post" action="apply.aspx">
+		<div class="simform-inner">
+            <a href="../../Do/login.aspx">学生之家</a>招聘报名中·最新招聘公告请关注微信号ynuxszj·2015年4月24日截止
+			<ol class="questions">
+                <li>
+                    <span><label for="q1">我们需要知道你的名字?</label></span>
+                    <input id="q1" name="q1" type="text" />
+                </li>
+                <li>
+                    <span><label for="q2">你大/研几？哪个学院专业？</label></span>
+                    <input id="q2" name="q2" type="text" placeholder="两个内容 空格分开" />
+                </li>
+                
+        <li>
+            <span><label for="q3">性别？年龄？</label></span>
+            <input id="q2" name="q3" type="text" placeholder="空格分开" />
+        </li>
+        <li>
+            <span><label for="q4">你想要应聘的职位是？店长？店员？</label></span>
+            <input id="q3" name="q4" type="text" />
+        </li>
+        <li>
+            <span><label for="q5">你通过什么途径获知招聘信息？</label></span>
+            <input id="q3" name="q5" type="text" />
+        </li>
+        <li>
+            <span><label for="q6">你为什么来应聘？想在这里获得什么？</label></span>
+            <input id="q4" name="q6" type="text" />
+        </li>
+        <li>
+            <span><label for="q7">你能为学生之家带来什么？你的优势?</label></span>
+            <input id="q5" name="q7" type="text" />
+        </li>
+        <li>
+            <span><label for="q8">你期待每月工资是多少?</label></span>
+            <input id="q6" name="q8" type="text" />
+        </li>
+        <li>
+            <span><label for="q9">你能全心投入到学生之家的建设吗?</label></span>
+            <input id="q7" name="q9" type="text" />
+        </li>
+        <li>
+            <span><label for="q10">你对学生之家的发展有何建议？</label></span>
+            <input id="q7" name="q10" type="text" />
+        </li>
+        <li>
+            <span><label for="q11">你还有其他想要说的吗?请填写在下列中！</label></span>
+            <input id="q7" name="q11" type="text" />
+        </li>
+        <li>
+            <span><label for="q12">如果你能耐心填完以上内容，请留下你的电话号码?</label></span>
+            <input id="q7" name="q12" type="text" placeholder="电话至关重要！" />
+        </li>
+
+			
+			</ol><!-- /questions -->
+			<button class="submit" type="submit">发送答案</button>
+			<div class="controls">
+				<button class="next"></button>
+				<div class="progress"></div>
+				<span class="number">
+					<span class="number-current"></span>
+					<span class="number-total"></span>
+				</span>
+				<span class="error-message"></span>
+			</div><!-- / controls -->
+		</div><!-- /simform-inner -->
+		<span class="final-message"></span>
+	</form><!-- /simform -->			
+</section>
+
+<script type="text/javascript" src="js/classie.js"></script>
+<script type="text/javascript" src="js/stepsForm.js"></script>
+<script type="text/javascript">
+var theForm = document.getElementById( 'theForm' );
+
+new stepsForm( theForm, {
+	onSubmit : function( form ) {
+	    // hide form
+	    document.forms["theForm"].submit();//necc
+		classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
+
+		/*
+		form.submit()
+		or
+		AJAX request (maybe show loading indicator while we don't have an answer..)
+		*/
+
+		// let's just simulate something...
+		var messageEl = theForm.querySelector( '.final-message' );
+		messageEl.innerHTML = '谢谢你！我们会联系你的。请保证你的信息无误，若信息不全我们将不做处理！请关注微信ynuxszj，最新消息通过微信发布。正在提交，请不要关闭窗口,直到弹出对话框显示报名成功！';
+		classie.addClass(messageEl, 'show');
+		
+	}
+} );
+</script>
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+</div>
+</body>
+</html>

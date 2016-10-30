@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>FancyForm用户注册页面表单模板</title>
+<script src="jquery/jquery-1.11.0.min.js"></script>
+<link href="fancyform/fancyform-min.css" rel="stylesheet">
+<script src="fancyform/fancyform-min.js"></script>
+<script src="google-code-prettify/prettify.js" type="text/javascript"></script>
+<link href="google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  
+<div id="form" style="margin:20px auto;width:300px;"></div>
+
+<script id="script-id">
+window.onload = function(){
+	/*自定义验证规则（这里自定义了年龄的规则）*/
+	FancyForm.vtype({
+		type: 'age',
+		fn: function(value){
+			return value>20 && value<80;
+		},
+		text: '请输入80并且大于20的年龄'
+	});
+	//设置下拉框数据
+	var comboData = [
+		{index:0, country: '中国'},
+		{index:1, country: '美国'},
+		{index:1, country: '欧洲'}
+	];
+	//构造表单
+	var form = $('#form').FancyForm({
+		title: '用户注册',
+		width: 300,
+		height: 435,
+		inputWidth: 190,
+		labelWidth: 60,		
+		url: 'submit.php',
+		params: {
+			param1: 1,
+			param2:'string'
+		},
+		method: 'POST',
+		defaults: {
+			type: 'string'
+		},
+		items: [{
+			label: '设置账号',
+			emptyText: '请输入账号',
+			name: 'accountname',
+			valid: {
+				blank: false,
+				blankText: '账号不能为空！',
+				text: '账号不能为空！ ',
+			}
+		},{
+			label: '设置昵称',
+			emptyText: '请输入昵称',
+			name: 'nickname',
+			valid: {
+				blank: false,
+				blankText: '昵称不能为空！',
+				text: '昵称不能为空！ ',
+			}
+		},{
+			label: '设置邮箱',
+			emptyText: '请输入电子邮箱',
+			name: 'email',
+			valid: {
+				type: 'email',
+				blank: false,
+				blankText: '邮箱不能为空！',
+				text: '邮箱格式不正确 '
+			}
+		},{
+			type: 'number',
+			label: '输入年龄',
+			emptyText: '请输入年龄',
+			name: 'age',
+			valid: {
+				blank: false,
+				blankText: '年龄不能为空！',
+				type: 'age'
+			},
+			min: 1,
+			max: 10
+		},{
+			type: 'combo',
+			label: '选择国家',
+			name: 'country',
+			data: comboData,
+			displayKey: 'country',
+			valueKey: 'index',
+			value: 0
+		},{
+			type: 'password',
+			label: '设置密码',
+			name: 'password',
+			valid: {
+				blank: false,
+				blankText: '密码不能为空！',
+				text: '密码不能为空！ '
+			}
+		},{
+			type: 'textarea',
+			label: '个人介绍',
+			name: 'about',
+			height:50
+		},{
+			type: 'checkbox',
+			label: '同意条款',
+			name: 'argument'
+		}],
+		buttons: [{
+			text: '获取值',
+			handler: function(){
+				console.log(form.get());
+				console.log(form.get('nickname'));//单独获取指定字段数据
+			}
+		},{
+			text: '清除',
+			handler: function(){
+				console.log('clear');
+				form.clear();
+			}
+		},{
+			text: '提交',
+			handler: function(){
+				console.log('提交');
+				form.submit({
+					params: {
+						param3: 'Some Values'
+					},
+					success: function(result, status, xhr){
+						console.log('success');
+						console.log(arguments);
+					},
+					error: function(xhr,status,error){
+						console.log('error');
+						console.log(arguments);
+					}
+				});
+			}
+		}],
+		events: [{
+			key: function(form, index, value){
+			}
+		}]
+	});
+	prettyPrint();
+};
+</script>
+<div style="text-align:center;">
+
+</div>
+</body>
+</html>
